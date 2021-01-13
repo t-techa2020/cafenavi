@@ -1,4 +1,9 @@
 <% if logged_in? %>
+  <div class="center jumbotron">
+    <div class="text-center">
+      <h1>Cafe Navi</h1>
+    </div>
+  </div>
   <div class="row">
     <aside class="col-sm-4">
       <%= form_with(model: @cafepost, local: true) do |f| %>
@@ -11,13 +16,38 @@
       <% end %>
     </aside>
     <div class="col-sm-8">
-      <%= render 'cafeposts/cafeposts', cafeposts: @cafeposts %>
+      <% @all_ranks.each.with_index(1) do |cafepost, i| %>
+        <li class="media mb-3">
+          <%= "人気ランキング　第#{i}位" %></p>
+          <img class="mr-2 rounded" src="<%= gravatar_url(cafepost.user, { size: 50 }) %>" alt="">
+          <div class="media-body">
+            <!--メンター追記-->
+            <div>
+              <%= "人気ランキング　第#{i}位" %>
+            </div>
+            <!--ここまで-->
+            <div>
+              <%= link_to cafepost.user.name, user_path(cafepost.user) %> <span class="text-muted">posted at <%= cafepost.created_at %></span>
+            </div>
+            <div>
+              <p><%= cafepost.content %></p>
+              <p><%= image_tag cafepost.image.url if cafepost.image? %></p>
+            </div>
+            <div class='btn-group'>
+              <% if current_user == cafepost.user %>
+                <%= link_to "Delete", cafepost, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+              <% end %>
+              <%= render "favorites/favorite_button", cafepost: cafepost %>
+            </div>
+          </div>
+        </li>
+      <% end %>
     </div>
   </div>
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">
-      <h1>Welcome to the CafeNavi</h1>
+      <h1>Welcome to the Cafe Navi</h1>
       <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
     </div>
   </div>

@@ -13,6 +13,14 @@ Rails.application.routes.draw do
     end
   end
   
+  get 'likes', to: 'user#likes'
+  resources :users, only: [:index, :show, :new, :create] do
+    member do
+      get :likes
+    end
+  end
+  
   resources :cafeposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
+  resources :favorites, only:[:create, :destroy]
 end
