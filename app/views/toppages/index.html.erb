@@ -18,14 +18,11 @@
     <div class="col-sm-8">
       <% @all_ranks.each.with_index(1) do |cafepost, i| %>
         <li class="media mb-3">
-          <%= "人気ランキング　第#{i}位" %></p>
           <img class="mr-2 rounded" src="<%= gravatar_url(cafepost.user, { size: 50 }) %>" alt="">
           <div class="media-body">
-            <!--メンター追記-->
             <div>
               <%= "人気ランキング　第#{i}位" %>
             </div>
-            <!--ここまで-->
             <div>
               <%= link_to cafepost.user.name, user_path(cafepost.user) %> <span class="text-muted">posted at <%= cafepost.created_at %></span>
             </div>
