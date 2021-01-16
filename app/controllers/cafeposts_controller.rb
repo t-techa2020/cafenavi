@@ -10,6 +10,8 @@ class CafepostsController < ApplicationController
     else
       @cafeposts = current_user.feed_cafeposts.order(id: :desc).page(params[:page])
       flash.now[:danger] = 'カフェの投稿に失敗しました。'
+      @all_ranks = Cafepost.find(Favorite.group(:cafepost_id).order('count(cafepost_id) desc').limit(6).pluck(:cafepost_id))
+      @cafepost = current_user.cafeposts.build(cafepost_params)
       render 'toppages/index'
     end
   end
@@ -23,7 +25,7 @@ class CafepostsController < ApplicationController
   private
   
   def cafepost_params
-    params.require(:cafepost).permit(:content, :image)
+    params.require(:cafepost).permit(:content, :image, :name, :prefecture)
   end
   
   def correct_user

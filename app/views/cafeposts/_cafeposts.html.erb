@@ -7,7 +7,9 @@
           <%= link_to cafepost.user.name, user_path(cafepost.user) %> <span class="text-muted">posted at <%= cafepost.created_at %></span>
         </div>
         <div>
-          <p><%= cafepost.content %></p>
+          <p>店名： <%= cafepost.name %></p>
+          <p>都道府県： <%= cafepost.prefecture %></p>
+          <p>感想： <%= cafepost.content %></p>
           <p><%= image_tag cafepost.image.url if cafepost.image? %></p>
         </div>
         <div class='btn-group'>

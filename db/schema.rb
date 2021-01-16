@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_11_024728) do
+ActiveRecord::Schema.define(version: 2021_01_16_002400) do
 
   create_table "cafeposts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "image"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2021_01_11_024728) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.integer "prefecture"
     t.index ["user_id"], name: "index_cafeposts_on_user_id"
   end
 
