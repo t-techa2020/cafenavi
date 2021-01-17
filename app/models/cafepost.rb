@@ -21,4 +21,15 @@ class Cafepost < ApplicationRecord
      沖縄県:47
    }
   
+  def self.search(keyword)
+    where(["title like? OR body like?", "%#{keyword}%", "%#{keyword}%"])
+  end
+  
+  def self.search(search)
+    if search
+      Cafepost.where(['name LIKE ?', "%#{search}%"])
+    else
+      Cafepost.all
+    end
+  end
 end

@@ -20,7 +20,12 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :cafeposts, only: [:create, :destroy]
+  resources :cafeposts, only: [:create, :show, :edit, :update, :destroy] do
+    collection do
+      get :search
+    end
+  end
+  
   resources :relationships, only: [:create, :destroy]
   resources :favorites, only:[:create, :destroy]
 end

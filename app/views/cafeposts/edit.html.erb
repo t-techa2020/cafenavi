@@ -1,0 +1,15 @@
+<h1><%= @cafepost.name %>の編集ページ</h1>
+
+<%= form_with(model: @cafepost, local: true) do |f| %>
+  <div class="form-group">
+    <%= f.label :店名 %>
+    <%= f.text_field :name, class: 'form-control', rows: 1 %>
+    <%= f.label :都道府県 %>
+    <%= f.select :prefecture, Cafepost.prefectures.keys, {} %>
+    <%= f.label :感想 %>
+    <%= f.text_area :content, class: 'form-control', rows: 5 %>
+    <%= f.label :画像 %>
+    <%= f.file_field :image %>
+  </div>
+  <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+<% end %>

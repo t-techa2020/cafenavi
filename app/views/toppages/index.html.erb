@@ -19,6 +19,11 @@
         </div>
         <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
       <% end %>
+      <p>検索</p>
+      <%= form_with url: search_cafeposts_path, method: :get, local: true do |f| %>
+        <%= f.text_field :name, placeholder: "カフェ名を入力" %>
+        <%= f.submit "検索" %>
+      <% end %>
     </aside>
     <div class="col-sm-8">
       <% @all_ranks.each.with_index(1) do |cafepost, i| %>
@@ -32,16 +37,17 @@
               <%= link_to cafepost.user.name, user_path(cafepost.user) %> <span class="text-muted">posted at <%= cafepost.created_at %></span>
             </div>
             <div>
-              <p>店名： <%= cafepost.name %></p>
+              <p>店名： <%= link_to cafepost.name, cafepost_path(cafepost) %></p>
               <p>都道府県： <%= cafepost.prefecture %></p>
               <p>感想： <%= cafepost.content %></p>
               <p><%= image_tag cafepost.image.url if cafepost.image? %></p>
             </div>
             <div class='btn-group'>
+              <%= render "favorites/favorite_button", cafepost: cafepost %>
               <% if current_user == cafepost.user %>
+                <%= link_to 'Edit', edit_cafepost_path(cafepost), class: 'btn btn-success btn-sm' %>
                 <%= link_to "Delete", cafepost, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
               <% end %>
-              <%= render "favorites/favorite_button", cafepost: cafepost %>
             </div>
           </div>
         </li>

@@ -13,10 +13,11 @@
           <p><%= image_tag cafepost.image.url if cafepost.image? %></p>
         </div>
         <div class='btn-group'>
+          <%= render "favorites/favorite_button", cafepost: cafepost %>
           <% if current_user == cafepost.user %>
+            <%= link_to 'Edit', edit_cafepost_path(cafepost), class: 'btn btn-success btn-sm' %>
             <%= link_to "Delete", cafepost, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
           <% end %>
-          <%= render "favorites/favorite_button", cafepost: cafepost %>
         </div>
       </div>
     </li>
