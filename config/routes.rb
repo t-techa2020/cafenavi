@@ -14,13 +14,13 @@ Rails.application.routes.draw do
   end
   
   get 'likes', to: 'user#likes'
-  resources :users, only: [:index, :show, :new, :create] do
+  resources :users, only: [:index, :show, :new, :create, :destroy] do
     member do
       get :likes
     end
   end
   
-  resources :cafeposts, only: [:create, :show, :edit, :update, :destroy] do
+  resources :cafeposts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     collection do
       get :search
     end

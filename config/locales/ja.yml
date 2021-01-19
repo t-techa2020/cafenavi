@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    models:
+      cafepost: カフェ
+    attributes:
+      cafepost:
+        name: カフェ名
+        content: 口コミ

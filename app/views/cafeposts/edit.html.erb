@@ -1,12 +1,13 @@
-<h1><%= @cafepost.name %>の編集ページ</h1>
+<h3><%= @cafepost.name %>の編集ページ</h3>
 
 <%= form_with(model: @cafepost, local: true) do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
   <div class="form-group">
-    <%= f.label :店名 %>
+    <%= f.label :カフェ名 %>
     <%= f.text_field :name, class: 'form-control', rows: 1 %>
     <%= f.label :都道府県 %>
     <%= f.select :prefecture, Cafepost.prefectures.keys, {} %>
-    <%= f.label :感想 %>
+    <%= f.label :口コミ %>
     <%= f.text_area :content, class: 'form-control', rows: 5 %>
     <%= f.label :画像 %>
     <%= f.file_field :image %>
