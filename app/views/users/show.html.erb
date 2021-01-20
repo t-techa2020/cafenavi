@@ -9,7 +9,9 @@
       </div>
     </div>
     <%= render 'relationships/follow_button', user: @user %>
-    <div><%= link_to "退会する", user_path(current_user.id), method: :delete, data:{confirm: "本当に退会してよろしいですか？"} %> 
+    <% if current_user.id == @user.id %>
+      <div><%= link_to "退会する", user_path(current_user.id), method: :delete, data:{confirm: "本当に退会してよろしいですか？"} %> 
+    <% end %>
   </aside>
   <div class="col-sm-8">
     <ul class="nav nav-tabs nav-justified mb-3">
