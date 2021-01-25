@@ -7,8 +7,48 @@
   <p>投稿日：　<%= @cafepost.created_at.strftime('%Y/%m/%d') %></p>
   <p>カフェ名： <%= @cafepost.name %></p>
   <p>都道府県： <%= @cafepost.prefecture %></p>
+  <p>住所：　<%= @cafepost.address %></p>
   <p>口コミ： <%= @cafepost.content %></p>
   <p><%= image_tag @cafepost.image.url if @cafepost.image? %></p>
+  <script type="text/javascript">
+    function initMap() {
+    <!-- #latitude,longitudeから位置を特定 -->
+      var test ={lat: <%= @cafepost.latitude %>, lng: <%= @cafepost.longitude %>};
+      var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15, 
+                center: test
+                });
+      var transitLayer = new google.maps.TransitLayer();
+      transitLayer.setMap(map);
+  
+      var contentString = '住所：<%= @cafepost.address %>';
+      var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+  
+   <!-- #Map上の指定した位置にピンを挿して表示する -->
+      var marker = new google.maps.Marker({
+                    position:test,
+                    map: map,
+                    title: contentString
+                   });
+  
+       marker.addListener('click', function() {
+         infowindow.open(map, marker);
+       });
+    }
+  </script>
+  <script async defer
+                src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+  </script>
+  
+  <style type="text/css">
+    #map { height: 200px;
+           width: 70%;}
+  </style>
+  
+  <!-- #mapの表示 -->
+  <div id="map"></div>
 </div>
 <div class='btn-group'>
   <%= render "favorites/favorite_button", cafepost: @cafepost %>

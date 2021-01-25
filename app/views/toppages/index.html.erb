@@ -1,14 +1,15 @@
 <% if logged_in? %>
   <div class="center jumbotron">
     <div class="text-center">
-      <h1>Cafe Navi</h1>
+      <h1>カフェなび</h1>
     </div>
   </div>
   <div class="container">
+    <h3>＜人気ランキング＞</h3>
     <div class="row">
       <% @all_ranks.each.with_index(1) do |cafepost, i| %>
         <div class="col-md-4 my-3">
-          <h4><%= "＜人気ランキング#{i}位＞" %></h4>
+          <h4><%= "#{i}位" %></h4>
           <img class="mr-2 rounded" src="<%= gravatar_url(cafepost.user, { size: 25 }) %>" alt="">
           <%= link_to cafepost.user.name, user_path(cafepost.user) %> <span class="text-muted">投稿日：<%= cafepost.created_at.strftime('%Y/%m/%d') %></span>
           <div>
@@ -27,7 +28,7 @@
     </div>
     <div class="row">
       <div class="col-md-8 my-3">
-        <h4>＜カフェの投稿＞</h4>
+        <h3>＜カフェの投稿＞</h3>
         <%= form_with(model: @cafepost, local: true) do |f| %>
           <%= render 'layouts/error_messages', model: f.object %>
           <div class="form-group">
@@ -35,6 +36,8 @@
             <%= f.text_field :name, class: 'form-control', rows: 1 %>
             <%= f.label :都道府県 %>
             <%= f.select :prefecture, Cafepost.prefectures.keys, {} ,class: 'form-control' %>
+            <%= f.label :住所 %>
+            <%= f.text_field :address, placeholder: "住所", class: 'form-control', rows: 1 %>
             <%= f.label :口コミ %>
             <%= f.text_area :content, class: 'form-control', rows: 5 %>
             <%= f.label :画像 %>
@@ -44,7 +47,8 @@
         <% end %>
       </div>
       <div class="col-md-4 my-3">
-        <h4>＜カフェの検索＞</h4>
+        <h3>＜カフェの検索＞</h3>
+        <p></p>
         <%= form_with url: search_cafeposts_path, method: :get, local: true do |f| %>
           <%= f.text_field :name, placeholder: "カフェ名を入力" %>
           <%= f.submit "検索" %>
@@ -55,15 +59,17 @@
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">
-      <h1>Welcome to the Cafe Navi</h1>
-      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+      <h1>カフェなび</h1>
+      <p></p>
+      <%= link_to '会員登録', signup_path, class: 'btn btn-lg btn-primary' %>
     </div>
   </div>
   <div class="container">
+    <h3>＜人気ランキング＞</h3>
     <div class="row">
       <% @all_ranks.each.with_index(1) do |cafepost, i| %>
         <div class="col-md-4">
-          <h4><%= "＜人気ランキング#{i}位＞" %></h4>
+          <h4><%= "#{i}位" %></h4>
           <div>
             <p>カフェ名： <%= link_to cafepost.name, cafepost_path(cafepost) %> (<%= cafepost.prefecture %>)</p>
             <p><%= image_tag cafepost.image.url if cafepost.image? %></p>
