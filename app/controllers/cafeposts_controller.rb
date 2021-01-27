@@ -57,7 +57,7 @@ class CafepostsController < ApplicationController
   private
   
   def cafepost_params
-    params.require(:cafepost).permit(:content, :image, :name, :prefecture, :address)
+    params.require(:cafepost).permit(:content, :image, :name, :prefecture, :address, :remove_image)
   end
   
   def correct_user

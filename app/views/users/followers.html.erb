@@ -1,5 +1,5 @@
 <div class="row">
-  <aside class="col-sm-4">
+  <aside class="col-sm-2">
     <div class="card">
       <div class="card-header">
         <h3 class="card-title"><%= @user.name %></h3>
@@ -13,7 +13,7 @@
       <div><%= link_to "退会する", user_path(current_user.id), method: :delete, data:{confirm: "本当に退会してよろしいですか？"} %> 
     <% end %>
   </aside>
-  <div class="col-sm-8">
+  <div class="col-sm-10">
     <ul class="nav nav-tabs nav-justified mb-3">
       <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= 'active' if current_page?(user_path(@user)) %>">Cafes  <span class="badge badge-secondary"><%= @count_cafeposts %></span></a></li>
       <li class="nav-item"><a href="<%= followings_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followings_user_path(@user)) %>">Followings  <span class="badge badge-secondary"><%= @count_followings %></span></a></li>

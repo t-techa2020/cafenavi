@@ -4,7 +4,7 @@
       <img class="mr-2 rounded" src="<%= gravatar_url(cafepost.user, { size: 50 }) %>" alt="">
       <div class="media-body">
         <div>
-          <%= link_to cafepost.user.name, user_path(cafepost.user) %> <span class="text-muted">posted at <%= cafepost.created_at %></span>
+          <%= link_to cafepost.user.name, user_path(cafepost.user) %> <span class="text-muted">投稿日：<%= cafepost.created_at.strftime('%Y/%m/%d') %></span>
         </div>
         <div>
           <p>カフェ名： <%= link_to cafepost.name, cafepost_path(cafepost) %></p>
@@ -15,8 +15,8 @@
         <div class='btn-group'>
           <%= render "favorites/favorite_button", cafepost: cafepost %>
           <% if current_user == cafepost.user %>
-            <%= link_to 'Edit', edit_cafepost_path(cafepost), class: 'btn btn-success btn-sm ml-1' %>
-            <%= link_to "Delete", cafepost, method: :delete, data: { confirm: "削除してよろしいですか?" }, class: 'btn btn-danger btn-sm ml-1' %>
+            <%= link_to 'Edit', edit_cafepost_path(cafepost), class: 'btn btn-outline-dark btn-sm ml-1' %>
+            <%= link_to "Delete", cafepost, method: :delete, data: { confirm: "削除してよろしいですか?" }, class: 'btn btn-outline-dark btn-sm ml-1' %>
           <% end %>
         </div>
       </div>

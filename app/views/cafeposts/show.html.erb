@@ -1,55 +1,80 @@
-<h3><%= @cafepost.name %>の詳細ページ</h3>
+<h2><%= @cafepost.name %></h2>
 
-<p></p>
-<p></p>
-<div>
-  <p>投稿者：　<%= link_to @cafepost.user.name, user_path(@cafepost.user) %></p>
-  <p>投稿日：　<%= @cafepost.created_at.strftime('%Y/%m/%d') %></p>
-  <p>カフェ名： <%= @cafepost.name %></p>
-  <p>都道府県： <%= @cafepost.prefecture %></p>
-  <p>住所：　<%= @cafepost.address %></p>
-  <p>口コミ： <%= @cafepost.content %></p>
-  <p><%= image_tag @cafepost.image.url if @cafepost.image? %></p>
-  <script type="text/javascript">
-    function initMap() {
-    <!-- #latitude,longitudeから位置を特定 -->
-      var test ={lat: <%= @cafepost.latitude %>, lng: <%= @cafepost.longitude %>};
-      var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 15, 
-                center: test
-                });
-      var transitLayer = new google.maps.TransitLayer();
-      transitLayer.setMap(map);
-  
-      var contentString = '住所：<%= @cafepost.address %>';
-      var infowindow = new google.maps.InfoWindow({
-        content: contentString
-      });
-  
-   <!-- #Map上の指定した位置にピンを挿して表示する -->
-      var marker = new google.maps.Marker({
-                    position:test,
-                    map: map,
-                    title: contentString
-                   });
-  
-       marker.addListener('click', function() {
-         infowindow.open(map, marker);
-       });
-    }
-  </script>
-  <script async defer
+<table class='table table-boarderd'>
+  <tr>
+    <td>投稿者</td>
+    <td><%= link_to @cafepost.user.name, user_path(@cafepost.user) %></td>
+  </tr>
+  <tr>
+    <td>投稿日</td>
+    <td><%= @cafepost.created_at.strftime('%Y/%m/%d') %></td>
+  </tr>
+  <tr>
+    <td>カフェ名</td>
+    <td><%= @cafepost.name %></td>
+  </tr>
+  <tr>
+    <td>都道府県</td>
+    <td><%= @cafepost.prefecture %></td>
+  </tr>
+  <tr>
+    <td>住所</td>
+    <td><%= @cafepost.address %></td>
+  </tr>
+  <tr>
+    <td>口コミ</td>
+    <td><%= @cafepost.content %></td>
+  </tr>
+  <tr>
+    <td>画像</td>
+    <td><%= image_tag @cafepost.image.url if @cafepost.image? %></td>
+  </tr>
+  <tr>
+    <td>地図</td>
+    <td>
+      <script type="text/javascript">
+        function initMap() {
+        <!-- #latitude,longitudeから位置を特定 -->
+          var test ={lat: <%= @cafepost.latitude %>, lng: <%= @cafepost.longitude %>};
+          var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15, 
+                    center: test
+                    });
+          var transitLayer = new google.maps.TransitLayer();
+          transitLayer.setMap(map);
+      
+          var contentString = '住所：<%= @cafepost.address %>';
+          var infowindow = new google.maps.InfoWindow({
+            content: contentString
+          });
+      
+       <!-- #Map上の指定した位置にピンを挿して表示する -->
+          var marker = new google.maps.Marker({
+                        position:test,
+                        map: map,
+                        title: contentString
+                       });
+      
+           marker.addListener('click', function() {
+             infowindow.open(map, marker);
+           });
+        }
+      </script>
+      <script async defer
                 src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
-  </script>
-  
-  <style type="text/css">
-    #map { height: 200px;
-           width: 70%;}
-  </style>
-  
-  <!-- #mapの表示 -->
-  <div id="map"></div>
-</div>
+      </script>
+            
+      <style type="text/css">
+        #map { height: 200px;
+               width: 70%;}
+      </style>
+        
+        <!-- #mapの表示 -->
+        <div id="map"></div>
+    </td>
+  </tr>
+</table>
+
 <div class='btn-group'>
   <%= render "favorites/favorite_button", cafepost: @cafepost %>
   <% if current_user == @cafepost.user %>

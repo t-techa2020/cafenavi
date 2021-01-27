@@ -9,7 +9,7 @@
     <div class="row">
       <% @all_ranks.each.with_index(1) do |cafepost, i| %>
         <div class="col-md-4 my-3">
-          <h4><%= "#{i}位" %></h4>
+          <h4><%= "第#{i}位" %></h4>
           <img class="mr-2 rounded" src="<%= gravatar_url(cafepost.user, { size: 25 }) %>" alt="">
           <%= link_to cafepost.user.name, user_path(cafepost.user) %> <span class="text-muted">投稿日：<%= cafepost.created_at.strftime('%Y/%m/%d') %></span>
           <div>
@@ -19,8 +19,8 @@
           <div class='btn-group'>
             <%= render "favorites/favorite_button", cafepost: cafepost %>
             <% if current_user == cafepost.user %>
-              <%= link_to 'Edit', edit_cafepost_path(cafepost), class: 'btn btn-success btn-sm ml-1' %>
-              <%= link_to "Delete", cafepost, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm ml-1' %>
+              <%= link_to 'Edit', edit_cafepost_path(cafepost), class: 'btn btn-outline-dark btn-sm ml-1' %>
+              <%= link_to "Delete", cafepost, method: :delete, data: { confirm: "本当に削除してよろしいですか？" }, class: 'btn btn-outline-dark btn-sm ml-1' %>
             <% end %>
           </div>
         </div>
@@ -43,7 +43,7 @@
             <%= f.label :画像 %>
             <%= f.file_field :image %>
           </div>
-          <%= f.submit '投稿', class: 'btn btn-primary btn-block' %>
+          <%= f.submit '投稿', class: 'btn btn-outline-dark btn-block' %>
         <% end %>
       </div>
       <div class="col-md-4 my-3">
