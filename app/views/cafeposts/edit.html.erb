@@ -5,17 +5,24 @@
   <div class="form-group">
     <%= f.label :カフェ名 %>
     <%= f.text_field :name, class: 'form-control', rows: 1 %>
+  </div>
+  <div class="form-group">
     <%= f.label :都道府県 %>
-    <%= f.select :prefecture, Cafepost.prefectures.keys, {},class: 'form-control' %>
+    <%= f.select :prefecture, Cafepost.prefectures.keys.map {|k| [I18n.t("enums.cafepost.prefecture.#{k}"), k]}, {}, {class: 'form-control'} %>
+  </div>
+  <div class="form-group">
     <%= f.label :住所 %>
     <%= f.text_field :address, placeholder: "住所", class: 'form-control', rows: 1 %>
+  </div>
+  <div class="form-group">
     <%= f.label :口コミ %>
     <%= f.text_area :content, class: 'form-control', rows: 5 %>
+  </div>
+  <div class="form-group">
     <%= f.label :画像 %>
     <%= f.file_field :image %>
     <%= f.check_box :remove_image %>画像を削除する
     <%= image_tag @cafepost.image.url if @cafepost.image? %>
   </div>
-    
-  <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+  <%= f.submit 'Post', class: 'btn btn-outline-dark btn-block' %>
 <% end %>

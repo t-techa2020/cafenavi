@@ -14,7 +14,7 @@ class CafepostsController < ApplicationController
     @cafepost = current_user.cafeposts.build(cafepost_params)
     if @cafepost.save
       flash[:success] = 'カフェを投稿しました。'
-      redirect_to root_url
+      render :show
     else
       @cafeposts = current_user.feed_cafeposts.order(id: :desc).page(params[:page])
       flash.now[:danger] = 'カフェの投稿に失敗しました。'

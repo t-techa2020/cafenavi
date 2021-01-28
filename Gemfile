@@ -55,6 +55,7 @@ gem 'kaminari'
 
 gem 'carrierwave'
 gem 'cloudinary'
+gem 'mini_magick'
 
 gem 'rails-i18n'
 
@@ -65,3 +66,5 @@ end
 gem "geocoder"
 
 gem "dotenv-rails"
+
+gem "enum_help"
