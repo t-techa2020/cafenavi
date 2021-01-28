@@ -18,7 +18,7 @@
       <% @cafeposts.each do |cafepost| %>
         <tr>
           <td><%= link_to cafepost.name, cafepost_path(cafepost) %></td>
-          <td><%= cafepost.prefecture %></td>
+          <td><%= cafepost.prefecture_i18n %></td>
           <td><%= link_to cafepost.user.name, user_path(cafepost.user) %></td>
         </tr>
       <% end %>
