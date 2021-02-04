@@ -68,3 +68,12 @@ gem "geocoder"
 gem "dotenv-rails"
 
 gem "enum_help"
+
+group :development, :test do
+  gem 'rspec-rails', '~> 4.0.2'
+  gem "factory_bot_rails"
+end
+
+group :development, :test do
+  gem 'spring-commands-rspec'
+end

@@ -10,16 +10,20 @@ class CafepostsController < ApplicationController
     @cafepost = Cafepost.find(params[:id])
   end
   
+  def new
+    @cafepost = Cafepost.new
+  end
+  
   def create
     @cafepost = current_user.cafeposts.build(cafepost_params)
     if @cafepost.save
-      flash[:success] = 'カフェを投稿しました。'
+      flash.now[:success] = 'カフェを投稿しました。'
       render :show
     else
       @cafeposts = current_user.feed_cafeposts.order(id: :desc).page(params[:page])
       flash.now[:danger] = 'カフェの投稿に失敗しました。'
       @all_ranks = Cafepost.find(Favorite.group(:cafepost_id).order('count(cafepost_id) desc').limit(6).pluck(:cafepost_id))
-      render 'toppages/index'
+      render :new
     end
   end
   
@@ -47,10 +51,15 @@ class CafepostsController < ApplicationController
   end
   
   def search
-    if params[:name].present?
-      @cafeposts = Cafepost.where('name LIKE ?', "%#{params[:name]}%")
+    if params[:search].present?
+      if Cafepost.where('name LIKE ?', "%#{params[:search]}%") == []
+         @cafeposts = Cafepost.all.page(params[:page])
+         flash.now[:danger] = 'カフェは見つかりませんでした'
+      else
+         @cafeposts = Cafepost.where('name LIKE ?', "%#{params[:search]}%").page(params[:page])
+      end
     else
-      @cafeposts = Cafepost.none
+      @cafeposts = Cafepost.all.page(params[:page])
     end
   end
   

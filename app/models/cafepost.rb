@@ -17,18 +17,6 @@ class Cafepost < ApplicationRecord
     yamaguchi: 35, tokushima: 36, kagawa: 37, ehime: 38, kochi: 39, fukuoka: 40, saga: 41, nagasaki:42, kumamoto: 43, 
     oita: 44, miyazaki: 45, kagoshima: 46, okinawa: 47}
   
-  def self.search(keyword)
-    where(["title like? OR body like?", "%#{keyword}%", "%#{keyword}%"])
-  end
-  
-  def self.search(search)
-    if search
-      Cafepost.where(['name LIKE ?', "%#{search}%"])
-    else
-      Cafepost.all
-    end
-  end
-  
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 end

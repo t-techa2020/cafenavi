@@ -8,8 +8,8 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <% if logged_in? %>
-          <li class="nav-item"><%= link_to '投稿する', root_path(anchor: 'post'), class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to '検索する', root_path(anchor: 'search'), class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to '投稿する', new_cafepost_path, class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to '検索する', search_cafeposts_path, class: 'nav-link' %></li>
           <li class="nav-item"><%= link_to 'ユーザ', users_path, class: 'nav-link' %></li>
           <li class="nav-item"><%= link_to 'カフェ', cafeposts_path, class: 'nav-link' %></li>
           <li class="nav-item dropdown">
