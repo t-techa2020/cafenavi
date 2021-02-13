@@ -74,11 +74,12 @@
     </td>
   </tr>
 </table>
-
-<div class='btn-group'>
-  <%= render "favorites/favorite_button", cafepost: @cafepost %>
-  <% if current_user == @cafepost.user %>
-    <%= link_to 'Edit', edit_cafepost_path(@cafepost), class: 'btn btn btn-outline-dark btn-sm ml-1' %>
-    <%= link_to "Delete", @cafepost, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn btn-outline-dark btn-sm ml-1' %>
-  <% end %>
-</div>
+<% if user_signed_in? %>
+  <div class='btn-group'>
+    <%= render "favorites/favorite_button", cafepost: @cafepost %>
+    <% if current_user == @cafepost.user %>
+      <%= link_to 'Edit', edit_cafepost_path(@cafepost), class: 'btn btn btn-outline-dark btn-sm ml-1' %>
+      <%= link_to "Delete", @cafepost, method: :delete, data: { confirm: "削除してよろしいですか?" }, class: 'btn btn btn-outline-dark btn-sm ml-1' %>
+    <% end %>
+  </div>
+<% end %>

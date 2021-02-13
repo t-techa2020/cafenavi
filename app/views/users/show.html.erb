@@ -8,9 +8,11 @@
         <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
       </div>
     </div>
-    <%= render 'relationships/follow_button', user: @user %>
-    <% if current_user.id == @user.id %>
-      <div><%= link_to "退会する", user_path(current_user.id), method: :delete, data:{confirm: "本当に退会してよろしいですか？"}, class: 'btn btn-outline-dark btn-sm ml-1' %></div>
+    <% if user_signed_in? %>
+      <%= render 'relationships/follow_button', user: @user %>
+      <% if current_user.id == @user.id %>
+        <div><%= link_to "退会する", user_path(current_user.id), method: :delete, data:{confirm: "本当に退会してよろしいですか？"}, class: 'btn btn-outline-dark btn-sm ml-1' %></div>
+      <% end %>
     <% end %>
   </aside>
   <div class="col-sm-10">

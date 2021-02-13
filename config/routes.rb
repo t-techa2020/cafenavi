@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
   root to: 'toppages#index'
   
-  get 'login', to: 'sessions#new'
-  post 'login', to: 'sessions#create'
-  delete 'logout', to: 'sessions#destroy'
+  # get 'login', to: 'sessions#new'
+  # post 'login', to: 'sessions#create'
+  # delete 'logout', to: 'sessions#destroy'
   
-  get 'signup', to: 'users#new'
-  resources :users, only: [:index, :show, :new, :create] do
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
+  }
+  resources :users, only: [:index, :new, :show, :create] do
     member do
       get :followings
       get :followers
@@ -28,4 +31,10 @@ Rails.application.routes.draw do
   
   resources :relationships, only: [:create, :destroy]
   resources :favorites, only:[:create, :destroy]
+  
+  devise_for :owners, controllers: {
+    registrations: 'owners/registrations',
+    sessions: 'owners/sessions'
+  }
+  resources :owners, only: [:index, :new, :show, :create, :destroy]
 end

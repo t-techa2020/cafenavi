@@ -1,5 +1,5 @@
 <div class="text-center">
-  <h1>会員登録</h1>
+  <h1>ユーザ会員登録</h1>
 </div>
 
 <div class="row">
@@ -28,7 +28,8 @@
         <%= f.password_field :password_confirmation, class: 'form-control' %>
       </div>
 
-      <%= f.submit '会員登録', class: 'btn btn-outline-dark btn-block' %>
+      <%= f.submit 'ユーザ会員登録', class: 'btn btn-outline-dark btn-block' %>
     <% end %>
+    <p>オーナーの方は<%= link_to 'こちら', new_owner_registration_path %></p>
   </div>
 </div>

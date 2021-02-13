@@ -2,10 +2,11 @@ class Cafepost < ApplicationRecord
   belongs_to :user
   mount_uploader :image, ImageUploader
   
-  validates :content, presence: true, length: { maximum: 255 }
   validates :name, presence: true, length: { maximum: 255 }
-  validates :address, presence: true, length: { maximum: 255 }
+  validates :content, presence: true, length: { maximum: 255 }
   validates :prefecture, exclusion: { in: ["---"] , message: "を選択してください"} 
+  validates :address, presence: true, length: { maximum: 255 }
+  
   
   has_many :favorites, dependent: :destroy
   has_many :liked, through: :favorites, source: :user

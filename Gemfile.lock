@@ -71,6 +71,14 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.7)
     crass (1.0.6)
+    devise (4.7.3)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
+    devise-i18n (1.9.2)
+      devise (>= 4.7.1)
     diff-lcs (1.4.4)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
@@ -140,6 +148,7 @@ GEM
     nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
+    orm_adapter (0.5.0)
     pg (1.2.3)
     public_suffix (4.0.6)
     puma (3.12.6)
@@ -182,6 +191,9 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    responders (3.0.1)
+      actionpack (>= 5.0)
+      railties (>= 5.0)
     rest-client (2.1.0)
       http-accept (>= 1.7.0, < 2.0)
       http-cookie (>= 1.0.2, < 2.0)
@@ -244,6 +256,8 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.7)
+    warden (1.2.9)
+      rack (>= 2.0.9)
     web-console (3.7.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -263,6 +277,8 @@ DEPENDENCIES
   carrierwave
   cloudinary
   coffee-rails (~> 4.2)
+  devise
+  devise-i18n
   dotenv-rails
   enum_help
   factory_bot_rails

@@ -1,0 +1,11 @@
+<% if owners.any? %>
+  <table class="table">
+    <% owners.each do |owner| %>
+      <tr>
+        <td><%= owner.cafename %></td>
+        <td><%= link_to 'プロフィール', owner_path(owner) %></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= paginate owners %>
+<% end %>
