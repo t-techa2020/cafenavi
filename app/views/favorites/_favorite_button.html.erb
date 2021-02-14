@@ -1,11 +1,11 @@
 <% if current_user.favorite?(cafepost) %>
   <%= form_with(model: current_user.favorites.find_by(cafepost_id: cafepost.id), local: true, method: :delete) do |f| %>
     <%= hidden_field_tag :cafepost_id, cafepost.id %>
-    <%= f.submit 'Unfavorite', class: 'btn btn-outline-dark btn-sm' %>
+    <%= f.submit 'お気に入り解除', class: 'btn btn-outline-dark btn-sm' %>
   <% end %>
 <% else %>
   <%= form_with(model: current_user.favorites.build, local: true) do |f| %>
     <%= hidden_field_tag :cafepost_id, cafepost.id %>
-    <%= f.submit 'Favorite', class: 'btn btn-outline-dark btn-sm' %>
+    <%= f.submit 'お気に入り', class: 'btn btn-outline-dark btn-sm' %>
   <% end %>
 <% end %>

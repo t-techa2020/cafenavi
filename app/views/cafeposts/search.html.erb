@@ -3,7 +3,6 @@
   <%= f.text_field :search, placeholder: "カフェ名を入力"%>
   <%= f.submit "検索" %>
 <% end %>
-
 <div class="mt-5">
   <h3>検索結果</h3>
   <table class="table">
@@ -25,3 +24,6 @@
     </tbody>
   </table>
 </div>
+<%= paginate @cafeposts %>
+<p>コーヒー豆の検索は<%= link_to 'こちら', search_beanposts_path %></p>
+

@@ -78,8 +78,8 @@
   <div class='btn-group'>
     <%= render "favorites/favorite_button", cafepost: @cafepost %>
     <% if current_user == @cafepost.user %>
-      <%= link_to 'Edit', edit_cafepost_path(@cafepost), class: 'btn btn btn-outline-dark btn-sm ml-1' %>
-      <%= link_to "Delete", @cafepost, method: :delete, data: { confirm: "削除してよろしいですか?" }, class: 'btn btn btn-outline-dark btn-sm ml-1' %>
+      <%= link_to '編集', edit_cafepost_path(@cafepost), class: 'btn btn-outline-dark btn-sm ml-1' %>
+      <%= link_to "削除", @cafepost, method: :delete, data: { confirm: "削除してよろしいですか?" }, class: 'btn btn-outline-dark btn-sm ml-1' %>
     <% end %>
   </div>
 <% end %>

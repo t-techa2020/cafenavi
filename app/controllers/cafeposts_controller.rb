@@ -1,9 +1,10 @@
 class CafepostsController < ApplicationController
-  before_action :require_logged_in
+  before_action :require_logged_in, only: [:index, :show, :search]
+  before_action :authenticate_user!, only: [:new, :create]
   before_action :correct_user, only: [:edit, :destroy]
   
   def index
-    @cafeposts = Cafepost.all.page(params[:page])
+    @cafeposts = Cafepost.all.page(params[:page]).per(10)
   end
 
   def show
@@ -53,13 +54,13 @@ class CafepostsController < ApplicationController
   def search
     if params[:search].present?
       if Cafepost.where('name LIKE ?', "%#{params[:search]}%") == []
-         @cafeposts = Cafepost.all.page(params[:page])
+         @cafeposts = Cafepost.all.page(params[:page]).per(10)
          flash.now[:danger] = 'カフェは見つかりませんでした'
       else
-         @cafeposts = Cafepost.where('name LIKE ?', "%#{params[:search]}%").page(params[:page])
+         @cafeposts = Cafepost.where('name LIKE ?', "%#{params[:search]}%").page(params[:page]).per(10)
       end
     else
-      @cafeposts = Cafepost.all.page(params[:page])
+      @cafeposts = Cafepost.all.page(params[:page]).per(10)
     end
   end
   

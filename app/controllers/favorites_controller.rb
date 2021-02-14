@@ -1,5 +1,5 @@
 class FavoritesController < ApplicationController
-  before_action :require_user_logged_in
+  before_action :authenticate_user!
   
   def create
     cafepost = Cafepost.find(params[:cafepost_id])

@@ -37,4 +37,10 @@ Rails.application.routes.draw do
     sessions: 'owners/sessions'
   }
   resources :owners, only: [:index, :new, :show, :create, :destroy]
+  
+  resources :beanposts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+    collection do
+      get :search
+    end
+  end
 end

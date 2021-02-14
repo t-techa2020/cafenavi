@@ -1,0 +1,25 @@
+<h2>コーヒー豆一覧</h2>
+
+<% if @beanposts.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>コーヒー豆</th>
+        <th>税込価格</th>
+        <th>カフェ名</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @beanposts.each do |beanpost| %>
+        <tr>
+          <td><%= link_to beanpost.name, beanpost_path(beanpost) %></td>
+          <td><%= beanpost.price %>円</td>
+          <td><%= link_to beanpost.owner.cafename, owner_path(beanpost.owner) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div>
+    <%= paginate @beanposts %>
+  </div>
+<% end %>

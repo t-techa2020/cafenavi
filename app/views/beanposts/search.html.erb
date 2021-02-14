@@ -1,0 +1,27 @@
+<h3 class="mb-3">コーヒー豆の検索</h3>
+<%= form_with url: search_beanposts_path, method: :get, local: true do |f| %>
+  <%= f.text_field :search, placeholder: "商品名を入力"%>
+  <%= f.submit "検索" %>
+<% end %>
+<div class="mt-5">
+  <h3>検索結果</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>商品名</th>
+        <th>価格（円）</th>
+        <th>カフェ名</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @beanposts.each do |beanpost| %>
+        <tr>
+          <td><%= link_to beanpost.name, beanpost_path(beanpost) %></td>
+          <td><%= beanpost.price %></td>
+          <td><%= link_to beanpost.owner.cafename, owner_path(beanpost.owner) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<p>カフェの検索は<%= link_to 'こちら', search_cafeposts_path %></p>

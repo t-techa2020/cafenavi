@@ -2,10 +2,6 @@
 
 <table class='table table-boarderd'>
   <tr>
-    <td>カフェ名</td>
-    <td><%= @owner.cafename %></td>
-  </tr>
-  <tr>
     <td>オーナー名</td>
     <td><%= @owner.name %></td>
   </tr>
@@ -57,6 +53,8 @@
         <div id="map"></div>
     </td>
   </tr>
+  <td>WEBサイト</td>
+  <td>---</td>
 </table>
 <% if owner_signed_in? %>
   <% if current_owner.id == @owner.id %>

@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_11_134109) do
+ActiveRecord::Schema.define(version: 2021_02_13_081943) do
+
+  create_table "beanposts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "image"
+    t.integer "amount"
+    t.integer "price"
+    t.string "country"
+    t.bigint "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_beanposts_on_owner_id"
+  end
 
   create_table "cafeposts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "image"
@@ -77,6 +89,7 @@ ActiveRecord::Schema.define(version: 2021_02_11_134109) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "beanposts", "owners"
   add_foreign_key "cafeposts", "users"
   add_foreign_key "favorites", "cafeposts"
   add_foreign_key "favorites", "users"

@@ -1,0 +1,28 @@
+<h3><%= @beanpost.name %>の編集ページ</h3>
+
+<%= form_with(model: @beanpost, local: true) do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
+  <div class="form-group">
+    <%= f.label :コーヒー豆 %>
+    <%= f.text_field :name, class: 'form-control', rows: 1 %>
+  </div>
+  <div class="form-group">
+    <%= f.label :量（g） %>
+    <%= f.text_field :amount, class: 'form-control', rows: 1 %>
+  </div>
+  <div class="form-group">
+    <%= f.label :価格（円） %>
+    <%= f.text_field :price, class: 'form-control', rows: 1 %>
+  </div>
+  <div class="form-group">
+    <%= f.label :産地 %>
+    <%= f.text_area :country, class: 'form-control', rows: 1 %>
+  </div>
+  <div class="form-group">
+    <%= f.label :画像 %>
+    <%= f.file_field :image %>
+    <%= f.check_box :remove_image %>画像を削除する
+    <%= image_tag @beanpost.image.url if @beanpost.image? %>
+  </div>
+  <%= f.submit 'Post', class: 'btn btn-outline-dark btn-block' %>
+<% end %>

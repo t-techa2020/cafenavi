@@ -7,26 +7,11 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:cafename, :name, :address])
   end
   
-  
-  # include SessionsHelper
-  
   private
 
   def require_logged_in
     unless user_signed_in? || owner_signed_in?
       redirect_to new_user_session_path
-    end
-  end
-  
-  def require_user_logged_in
-    unless user_signed_in?
-      redirect_to new_user_session_path
-    end
-  end
-  
-  def require_owner_logged_in
-    unless owner_signed_in?
-      redirect_to new_owner_session_path
     end
   end
   
