@@ -18,6 +18,7 @@ class CafepostsController < ApplicationController
   def create
     @cafepost = current_user.cafeposts.build(cafepost_params)
     if @cafepost.save
+      sleep(10)
       flash.now[:success] = 'カフェを投稿しました。'
       render :show
     else
