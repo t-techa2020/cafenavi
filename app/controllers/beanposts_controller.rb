@@ -19,11 +19,9 @@ class BeanpostsController < ApplicationController
     @beanpost = current_owner.beanposts.build(beanpost_params)
     if @beanpost.save
       flash.now[:success] = '商品を投稿しました。'
-      render :show
+      redirect_to @beanpost
     else
-      @beanposts = current_owner.feed_beanposts.order(id: :desc).page(params[:page])
       flash.now[:danger] = '商品の投稿に失敗しました。'
-      #@all_ranks = Beanpost.find(Favorite.group(:beanpost_id).order('count(beanpost_id) desc').limit(6).pluck(:beanpost_id))
       render :new
     end
   end
@@ -37,7 +35,7 @@ class BeanpostsController < ApplicationController
 
     if @beanpost.update(beanpost_params)
       flash[:success] = '商品は正常に更新されました'
-      render :show
+      redirect_to @beanpost
     else
       flash.now[:danger] = '商品は更新されませんでした'
       render :edit

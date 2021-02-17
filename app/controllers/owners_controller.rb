@@ -1,26 +1,14 @@
 class OwnersController < ApplicationController
+  before_action :require_logged_in
+  before_action :require_owner_logged_in, only: [:destroy]
+  before_action :current_owner, only: [:destroy]
+  
   def index
     @owners = Owner.order(id: :desc).page(params[:page]).per(10)
   end
 
   def show
     @owner = Owner.find(params[:id])
-  end
-
-  def new
-    @owner = Owner.new
-  end
-
-  def create
-    @owner = Owner.new(owner_params)
-    
-    if @owner.save
-      flash[:success] = 'オーナーを登録しました。'
-      redirect_to @owner
-    else
-      flash.now[:danger] = 'オーナーの登録に失敗しました。'
-      render :new
-    end
   end
   
   def destroy
