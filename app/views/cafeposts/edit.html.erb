@@ -22,7 +22,7 @@
     <%= f.label :画像 %>
     <%= f.file_field :image %>
     <%= f.check_box :remove_image %>画像を削除する
-    <%= image_tag @cafepost.image.url if @cafepost.image? %>
+    <%= image_tag @cafepost.image.url %>
   </div>
   <%= f.submit '更新', class: 'btn btn-outline-dark btn-block' %>
 <% end %>

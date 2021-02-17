@@ -7,7 +7,6 @@ class Cafepost < ApplicationRecord
   validates :prefecture, exclusion: { in: ["---"] , message: "を選択してください"} 
   validates :address, presence: true, length: { maximum: 255 }
   
-  
   has_many :favorites, dependent: :destroy
   has_many :liked, through: :favorites, source: :user
   

@@ -1,19 +1,19 @@
 ---
 development:
-  cloud_name: hd56k2h70
-  api_key: '527147573139898'
-  api_secret: oqm0W4qugvoGeaZQK3SixGYfWFY
+  cloud_name: <%= ENV['CLOUD_NAME'] %>
+  api_key: <%= ENV['CLOUDINARY_API_KEY'] %>
+  api_secret: <%= ENV['CLOUDINARY_API_SECRET'] %>
   enhance_image_tag: true
   static_file_support: false
 production:
-  cloud_name: hd56k2h70
-  api_key: '527147573139898'
-  api_secret: oqm0W4qugvoGeaZQK3SixGYfWFY
+  cloud_name: <%= ENV['CLOUD_NAME'] %>
+  api_key: <%= ENV['CLOUDINARY_API_KEY'] %>
+  api_secret: <%= ENV['CLOUDINARY_API_SECRET'] %>
   enhance_image_tag: true
   static_file_support: true
 test:
-  cloud_name: hd56k2h70
-  api_key: '527147573139898'
-  api_secret: oqm0W4qugvoGeaZQK3SixGYfWFY
+  cloud_name: <%= ENV['CLOUD_NAME'] %>
+  api_key: <%= ENV['CLOUDINARY_API_KEY'] %>
+  api_secret: <%= ENV['CLOUDINARY_API_SECRET'] %>
   enhance_image_tag: true
   static_file_support: false

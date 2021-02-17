@@ -18,13 +18,10 @@ class CafepostsController < ApplicationController
   def create
     @cafepost = current_user.cafeposts.build(cafepost_params)
     if @cafepost.save
-      sleep(10)
       flash.now[:success] = 'カフェを投稿しました。'
-      render :show
+      redirect_to @cafepost
     else
-      @cafeposts = current_user.feed_cafeposts.order(id: :desc).page(params[:page])
       flash.now[:danger] = 'カフェの投稿に失敗しました。'
-      @all_ranks = Cafepost.find(Favorite.group(:cafepost_id).order('count(cafepost_id) desc').limit(6).pluck(:cafepost_id))
       render :new
     end
   end
@@ -35,11 +32,9 @@ class CafepostsController < ApplicationController
   
   def update
     @cafepost = Cafepost.find(params[:id])
-
     if @cafepost.update(cafepost_params)
       flash[:success] = 'カフェは正常に更新されました'
-      @all_ranks = Cafepost.find(Favorite.group(:cafepost_id).order('count(cafepost_id) desc').limit(6).pluck(:cafepost_id))
-      render :show
+      redirect_to @cafepost
     else
       flash.now[:danger] = 'カフェは更新されませんでした'
       render :edit

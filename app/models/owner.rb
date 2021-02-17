@@ -3,6 +3,7 @@ class Owner < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  
   before_save { self.email.downcase! }
   validates :cafename, presence: true, length: { maximum: 50 }
   validates :name, presence: true, length: { maximum: 50 }
@@ -14,7 +15,7 @@ class Owner < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
   
-  has_many :beanposts
+  has_many :beanposts, dependent: :destroy
   
   def remember_me
     true
