@@ -5,7 +5,7 @@ FactoryBot.define do
     address { "MyString" }
     latitude { 1.5 }
     longitude { 1.5 }
-    email { "MyString" }
-    password_digest { "MyString" }
+    sequence(:email) { |n| "OWNER#{n}@example.com"}
+    password {"aaaa"}
   end
 end

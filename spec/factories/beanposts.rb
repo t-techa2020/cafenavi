@@ -5,6 +5,6 @@ FactoryBot.define do
     amount { 1 }
     price { 1 }
     country { "MyString" }
-    owner { nil }
+    owner { 1 }
   end
 end

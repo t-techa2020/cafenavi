@@ -1,7 +1,6 @@
 class OwnersController < ApplicationController
-  before_action :require_logged_in
-  before_action :require_owner_logged_in, only: [:destroy]
-  before_action :current_owner, only: [:destroy]
+  before_action :require_logged_in, only: [:index, :show]
+  before_action :authenticate_owner!, only: [:destroy]
   
   def index
     @owners = Owner.order(id: :desc).page(params[:page]).per(10)

@@ -1,7 +1,7 @@
 class BeanpostsController < ApplicationController
   before_action :require_logged_in, only: [:index, :show, :search]
-  before_action :authenticate_owner!, only: [:new, :create]
-  before_action :correct_owner, only: [:edit, :destroy]
+  before_action :authenticate_owner!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :correct_owner, only: [:edit, :update, :destroy]
   
   def index
     @beanposts = Beanpost.all.page(params[:page]).per(10)

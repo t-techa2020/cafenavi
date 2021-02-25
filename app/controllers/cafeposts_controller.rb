@@ -1,7 +1,7 @@
 class CafepostsController < ApplicationController
   before_action :require_logged_in, only: [:index, :show, :search]
-  before_action :authenticate_user!, only: [:new, :create]
-  before_action :correct_user, only: [:edit, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
   
   def index
     @cafeposts = Cafepost.all.page(params[:page]).per(10)
