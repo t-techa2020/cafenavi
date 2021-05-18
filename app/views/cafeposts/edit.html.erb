@@ -1,28 +1,32 @@
-<h3><%= @cafepost.name %>の編集ページ</h3>
-
-<%= form_with(model: @cafepost, local: true) do |f| %>
-  <%= render 'layouts/error_messages', model: f.object %>
-  <div class="form-group">
-    <%= f.label :カフェ名 %>
-    <%= f.text_field :name, class: 'form-control', rows: 1 %>
+<div class="container">
+  <h3 class="text-center py-3"><%= @cafepost.name %></h3>
+  
+  <div class="index">
+    <%= form_with(model: @cafepost, local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      <div class="form-group">
+        <%= f.label :name, "name" %>
+        <%= f.text_field :name, class: 'form-control', rows: 1 %>
+      </div>
+      <div class="form-group">
+        <%= f.label :prefecture, "prefecture" %>
+        <%= f.select :prefecture, Cafepost.prefectures.keys.map {|k| [I18n.t("enums.cafepost.prefecture.#{k}"), k]}, {}, {class: 'form-control'} %>
+      </div>
+      <div class="form-group">
+        <%= f.label :address, "address" %>
+        <%= f.text_field :address, class: 'form-control', rows: 1 %>
+      </div>
+      <div class="form-group">
+        <%= f.label :comment, "comment" %>
+        <%= f.text_area :content, class: 'form-control', rows: 5 %>
+      </div>
+      <div class="form-group">
+        <%= f.label :image, "image" %>
+        <%= f.file_field :image %>
+        <%= f.check_box :remove_image %>delete
+        <%= image_tag @cafepost.image.url %>
+      </div>
+      <%= f.submit 'update', class: 'btn btn-outline-dark btn-block' %>
+    <% end %>
   </div>
-  <div class="form-group">
-    <%= f.label :都道府県 %>
-    <%= f.select :prefecture, Cafepost.prefectures.keys.map {|k| [I18n.t("enums.cafepost.prefecture.#{k}"), k]}, {}, {class: 'form-control'} %>
-  </div>
-  <div class="form-group">
-    <%= f.label :住所 %>
-    <%= f.text_field :address, class: 'form-control', rows: 1 %>
-  </div>
-  <div class="form-group">
-    <%= f.label :口コミ %>
-    <%= f.text_area :content, class: 'form-control', rows: 5 %>
-  </div>
-  <div class="form-group">
-    <%= f.label :画像 %>
-    <%= f.file_field :image %>
-    <%= f.check_box :remove_image %>画像を削除する
-    <%= image_tag @cafepost.image.url %>
-  </div>
-  <%= f.submit '更新', class: 'btn btn-outline-dark btn-block' %>
-<% end %>
+</div>

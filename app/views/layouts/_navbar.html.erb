@@ -1,49 +1,51 @@
-<header class="mb-4">
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">カフェなび</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-      <ul class="navbar-nav">
-        <% if user_signed_in? %>
-          <li class="nav-item"><%= link_to '投稿する', new_cafepost_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to '検索する', search_cafeposts_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to 'カフェ', cafeposts_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to 'コーヒー豆', beanposts_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to 'ユーザー', users_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to 'オーナー', owners_path, class: 'nav-link' %></li>
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
-            <ul class="dropdown-menu dropdown-menu-right">
-              <li class="dropdown-item"><%= link_to 'プロフィール', user_path(current_user) %></li>
-              <li class="dropdown-divider"></li>
-              <li class="dropdown-item"><%= link_to 'お気に入り', likes_user_path(current_user) %></li>
-              <li class="dropdown-divider"></li>
-              <li class="dropdown-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-            </ul>
-          </li>
-        <% elsif owner_signed_in? %>
-          <li class="nav-item"><%= link_to '掲載する', new_beanpost_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to '検索する', search_cafeposts_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to 'カフェ', cafeposts_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to 'コーヒー豆', beanposts_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to 'ユーザー', users_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to 'オーナー', owners_path, class: 'nav-link' %></li>
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_owner.name %></a>
-            <ul class="dropdown-menu dropdown-menu-right">
-              <li class="dropdown-item"><%= link_to 'プロフィール', owner_path(current_owner) %></li>
-              <li class="dropdown-divider"></li>
-              <li class="dropdown-item"><%= link_to 'ログアウト', destroy_owner_session_path, method: :delete %></li>
-            </ul>
-          </li>
-        <% else %>
-          <li class="nav-item"><%= link_to '会員登録', new_user_registration_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to 'ログイン', new_user_session_path, class: 'nav-link' %></li>
-        <% end %>
-      </ul>
+<header>
+  <nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="/">Cafe Navi</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <% if user_signed_in? %>
+            <li class="nav-item"><%= link_to 'post', new_cafepost_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to 'search', search_cafeposts_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to 'cafes', cafeposts_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to 'beans', beanposts_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to 'users', users_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to 'owners', owners_path, class: 'nav-link' %></li>
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li class="dropdown-item"><%= link_to 'profile', user_path(current_user) %></li>
+                <li class="dropdown-divider"></li>
+                <li class="dropdown-item"><%= link_to 'favorites', likes_user_path(current_user) %></li>
+                <li class="dropdown-divider"></li>
+                <li class="dropdown-item"><%= link_to 'sign out', destroy_user_session_path, method: :delete %></li>
+              </ul>
+            </li>
+          <% elsif owner_signed_in? %>
+            <li class="nav-item"><%= link_to 'post', new_beanpost_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to 'search', search_cafeposts_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to 'cafes', cafeposts_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to 'beans', beanposts_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to 'users', users_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to 'owners', owners_path, class: 'nav-link' %></li>
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_owner.name %></a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li class="dropdown-item"><%= link_to 'profile', owner_path(current_owner) %></li>
+                <li class="dropdown-divider"></li>
+                <li class="dropdown-item"><%= link_to 'sign out', destroy_owner_session_path, method: :delete %></li>
+              </ul>
+            </li>
+          <% else %>
+            <li class="nav-item"><%= link_to 'sign up', new_user_registration_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to 'sign in', new_user_session_path, class: 'nav-link' %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </nav>
 </header>

@@ -1,61 +1,66 @@
-<h2><%= @owner.cafename %></h2>
-
-<table class='table table-boarderd'>
-  <tr>
-    <td>オーナー名</td>
-    <td><%= @owner.name %></td>
-  </tr>
-  <tr>
-    <td>住所</td>
-    <td><%= @owner.address %></td>
-  </tr>
-  <tr>
-    <td>地図</td>
-    <td>
-      <script type="text/javascript">
-        function initMap() {
-        <!-- #latitude,longitudeから位置を特定 -->
-          var test ={lat: <%= @owner.latitude %>, lng: <%= @owner.longitude %>};
-          var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 15, 
-                    center: test
-                    });
-          var transitLayer = new google.maps.TransitLayer();
-          transitLayer.setMap(map);
-      
-          var contentString = '住所：<%= @owner.address %>';
-          var infowindow = new google.maps.InfoWindow({
-            content: contentString
-          });
-      
-       <!-- #Map上の指定した位置にピンを挿して表示する -->
-          var marker = new google.maps.Marker({
-                        position:test,
-                        map: map,
-                        title: contentString
-                       });
-      
-           marker.addListener('click', function() {
-             infowindow.open(map, marker);
-           });
-        }
-      </script>
-      <script async defer
-                src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
-      </script>
+<div class="container mb-3">
+  <h3 class="text-center pt-5 pb-5"><%= @owner.cafename %></h3>
+  <div class="index">
+    <table class='table table-boarderd'>
+      <tr>
+        <td>name</td>
+        <td><%= @owner.name %></td>
+      </tr>
+      <tr>
+        <td>address</td>
+        <td><%= @owner.address %></td>
+      </tr>
+      <tr>
+        <td>map</td>
+        <td>
+          <script type="text/javascript">
+            function initMap() {
+            <!-- #latitude,longitudeから位置を特定 -->
+              var test ={lat: <%= @owner.latitude %>, lng: <%= @owner.longitude %>};
+              var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 15, 
+                        center: test
+                        });
+              var transitLayer = new google.maps.TransitLayer();
+              transitLayer.setMap(map);
+          
+              var contentString = '住所：<%= @owner.address %>';
+              var infowindow = new google.maps.InfoWindow({
+                content: contentString
+              });
+          
+           <!-- #Map上の指定した位置にピンを挿して表示する -->
+              var marker = new google.maps.Marker({
+                            position:test,
+                            map: map,
+                            title: contentString
+                           });
+          
+               marker.addListener('click', function() {
+                 infowindow.open(map, marker);
+               });
+            }
+          </script>
+          <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+          </script>
+                
+          <style type="text/css">
+            #map { height: 200px;
+                   width: 70%;}
+          </style>
             
-      <style type="text/css">
-        #map { height: 200px;
-               width: 70%;}
-      </style>
-        
-        <!-- #mapの表示 -->
-        <div id="map"></div>
-    </td>
-  </tr>
-</table>
-<% if owner_signed_in? %>
-  <% if current_owner.id == @owner.id %>
-    <div><%= link_to "退会する", owner_path(current_owner.id), method: :delete, data:{confirm: "本当に退会してよろしいですか？"}, class: 'btn btn-outline-dark btn-sm ml-1' %></div>
-  <% end %>
-<% end %>
+            <!-- #mapの表示 -->
+            <div id="map"></div>
+        </td>
+      </tr>
+    </table>
+    <div class="pt-2 pb-5 text-right">
+      <% if owner_signed_in? %>
+        <% if current_owner.id == @owner.id %>
+          <div><%= link_to "delete account", owner_path(current_owner.id), method: :delete, data:{confirm: "本当に退会してよろしいですか？"}, class: 'btn btn-outline-dark text-right btn-sm ml-1 ' %></div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

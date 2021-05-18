@@ -1,27 +1,26 @@
-<div class="row">
-  <aside class="col-sm-2">
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title"><%= @user.name %></h3>
-      </div>
-      <div class="card-body">
-        <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
-      </div>
-    </div>
+<div class="container mb-3">
+  <h3 class="pt-5 text-center"><%= @user.name %></h3>
+  <div class="pt-2 pb-5 text-center">
     <% if user_signed_in? %>
       <%= render 'relationships/follow_button', user: @user %>
-      <% if current_user.id == @user.id %>
-        <div><%= link_to "退会する", user_path(current_user.id), method: :delete, data:{confirm: "本当に退会してよろしいですか？"}, class: 'btn btn-outline-dark btn-sm ml-1' %></div>
-      <% end %>
     <% end %>
-  </aside>
-  <div class="col-sm-10">
-    <ul class="nav nav-tabs nav-justified mb-3">
-      <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= 'active' if current_page?(user_path(@user)) %>">カフェ  <span class="badge badge-secondary"><%= @count_cafeposts %></span></a></li>
-      <li class="nav-item"><a href="<%= followings_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followings_user_path(@user)) %>">フォロー  <span class="badge badge-secondary"><%= @count_followings %></span></a></li>
-      <li class="nav-item"><a href="<%= followers_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followers_user_path(@user)) %>">フォロワー  <span class="badge badge-secondary"><%= @count_followers %></span></a></li>
-      <li class="nav-item"><a href="<%= likes_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(likes_user_path(@user)) %>">お気に入り  <span class="badge badge-secondary"><%= @count_likes %></span></a></li>
-    </ul>
-    <%= render 'users', users: @followings %>
+  </div>
+  <div class="index">
+    <div class="row">
+      <div class="col-sm-12">
+        <ul class="nav nav-tabs nav-justified mb-3">
+          <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= 'active' if current_page?(user_path(@user)) %>">cafes <span class="badge badge-secondary"><%= @count_cafeposts %></span></a></li>
+          <li class="nav-item"><a href="<%= followings_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followings_user_path(@user)) %>">followings <span class="badge badge-secondary"><%= @count_followings %></span></a></li>
+          <li class="nav-item"><a href="<%= followers_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followers_user_path(@user)) %>">followers <span class="badge badge-secondary"><%= @count_followers %></span></a></li>
+          <li class="nav-item"><a href="<%= likes_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(likes_user_path(@user)) %>">favorites <span class="badge badge-secondary"><%= @count_likes %></span></a></li>
+        </ul>
+        <%= render 'users', users: @followings %>
+        <% if user_signed_in? %>
+          <% if current_user.id == @user.id %>
+            <div class="text-right"><%= link_to "delete account", user_path(current_user.id), method: :delete, data:{confirm: "本当に退会してよろしいですか？"}, class: 'btn btn-outline-dark btn-sm ml-1' %></div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

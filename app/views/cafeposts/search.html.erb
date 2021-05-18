@@ -1,29 +1,32 @@
-<h3 class="mb-3">カフェの検索</h3>
-<%= form_with url: search_cafeposts_path, method: :get, local: true do |f| %>
-  <%= f.text_field :search, placeholder: "カフェ名を入力"%>
-  <%= f.submit "検索" %>
-<% end %>
-<div class="mt-5">
-  <h3>検索結果</h3>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>カフェ名</th>
-        <th>都道府県</th>
-        <th>投稿者</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @cafeposts.each do |cafepost| %>
-        <tr>
-          <td><%= link_to cafepost.name, cafepost_path(cafepost) %></td>
-          <td><%= cafepost.prefecture_i18n %></td>
-          <td><%= link_to cafepost.user.name, user_path(cafepost.user) %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<div class="container">
+  <h3 class="text-center py-3">cafes search</h3>
+  <div class="index">
+    <%= form_with url: search_cafeposts_path, method: :get, local: true do |f| %>
+      <%= f.text_field :search, placeholder: "cafes name"%>
+      <%= f.submit "search" %>
+    <% end %>
+    <div class="mt-5">
+      <h3>result</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>cafe</th>
+            <th>prefecture</th>
+            <th>user name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cafeposts.each do |cafepost| %>
+            <tr>
+              <td><%= link_to cafepost.name, cafepost_path(cafepost) %></td>
+              <td><%= cafepost.prefecture_i18n %></td>
+              <td><%= link_to cafepost.user.name, user_path(cafepost.user) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= paginate @cafeposts %>
+    <p>><%= link_to 'beans search', search_beanposts_path %></p>
+  </div>
 </div>
-<%= paginate @cafeposts %>
-<p>コーヒー豆の検索は<%= link_to 'こちら', search_beanposts_path %></p>
-

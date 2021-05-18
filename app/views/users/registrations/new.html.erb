@@ -1,35 +1,39 @@
-<div class="text-center">
-  <h1>ユーザー会員登録</h1>
-</div>
-
-<div class="row">
-  <div class="col-sm-6 offset-sm-3">
-
-    <%= form_with(model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true) do |f| %>
-      <%= render 'layouts/error_messages', model: f.object %>
-      
-      <div class="form-group">
-        <%= f.label :name, '名前' %>
-        <%= f.text_field :name, class: 'form-control' %>
+<div class="container">
+  <div class="text-center py-3">
+    <h2>user sign up</h2>
+  </div>
+  
+  <div class="index">
+    <div class="row">
+      <div class="col-sm-6 offset-sm-3">
+    
+        <%= form_with(model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true) do |f| %>
+          <%= render 'layouts/error_messages', model: f.object %>
+          
+          <div class="form-group">
+            <%= f.label :name, 'name' %>
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
+    
+          <div class="form-group">
+            <%= f.label :email, 'email' %>
+            <%= f.email_field :email, class: 'form-control' %>
+          </div>
+    
+          <div class="form-group">
+            <%= f.label :password, 'password' %>
+            <%= f.password_field :password, class: 'form-control' %>
+          </div>
+    
+          <div class="form-group">
+            <%= f.label :password_confirmation, 'confirm password' %>
+            <%= f.password_field :password_confirmation, class: 'form-control' %>
+          </div>
+    
+          <%= f.submit 'user sign up', class: 'btn btn-outline-dark btn-block' %>
+        <% end %>
+        <p><%= link_to 'owner sign up', new_owner_registration_path %></p>
       </div>
-
-      <div class="form-group">
-        <%= f.label :email, 'メールアドレス' %>
-        <%= f.email_field :email, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :password, 'パスワード' %>
-        <%= f.password_field :password, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :password_confirmation, 'パスワード（確認用）' %>
-        <%= f.password_field :password_confirmation, class: 'form-control' %>
-      </div>
-
-      <%= f.submit 'ユーザー会員登録', class: 'btn btn-outline-dark btn-block' %>
-    <% end %>
-    <p>オーナーの方は<%= link_to 'こちら', new_owner_registration_path %></p>
+    </div>
   </div>
 </div>
