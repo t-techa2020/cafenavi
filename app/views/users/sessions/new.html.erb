@@ -1,34 +1,38 @@
-<div class="text-center">
-  <h1>ユーザーログイン</h1>
-</div>
-
-<div class="row">
-  <div class="col-sm-6 offset-sm-3">
-
-    <%= form_with(model: @user, url: user_session_path, id: 'new_user', class: 'new_user', local: true) do |f| %>
-
-      <div class="form-group">
-        <%= f.label :email, 'メールアドレス' %>
-        <%= f.email_field :email, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :password, 'パスワード' %>
-        <%= f.password_field :password, class: 'form-control' %>
-      </div>
-      
-      <%= f.submit 'ログイン', class: 'btn btn-outline-dark btn-block' %>
-      
-      <% if devise_mapping.rememberable? %>
-      <div class="form-group">
-        <%= f.label :remember_me do %>
-          <%= f.check_box :remember_me %>
-          <span>ログインしたままにする</span>
+<div class="container">
+  <div class="text-center py-3">
+    <h2>user sign in</h2>
+  </div>
+  
+  <div class="index">
+    <div class="row">
+      <div class="col-sm-6 offset-sm-3">
+    
+        <%= form_with(model: @user, url: user_session_path, id: 'new_user', class: 'new_user', local: true) do |f| %>
+    
+          <div class="form-group">
+            <%= f.label :email, 'email' %>
+            <%= f.email_field :email, class: 'form-control' %>
+          </div>
+    
+          <div class="form-group">
+            <%= f.label :password, 'password' %>
+            <%= f.password_field :password, class: 'form-control' %>
+          </div>
+          
+          <%= f.submit 'sign in', class: 'btn btn-outline-dark btn-block' %>
+          
+          <% if devise_mapping.rememberable? %>
+          <div class="form-group">
+            <%= f.label :remember_me do %>
+              <%= f.check_box :remember_me %>
+              <span>Remember Me</span>
+            <% end %>
+          </div>
+          <% end %>
         <% end %>
+    
+        <p><%= link_to 'owner sign in', new_owner_session_path %></p>
       </div>
-      <% end %>
-    <% end %>
-
-    <p>オーナーのログインは<%= link_to 'こちら', new_owner_session_path %></p>
+    </div>
   </div>
 </div>

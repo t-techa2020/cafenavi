@@ -1,26 +1,29 @@
-<h3>コーヒー豆の掲載</h3>
-
-<%= form_with(model: @beanpost, local: true) do |f| %>
-  <%= render 'layouts/error_messages', model: f.object %>
-  <div class="form-group">
-    <%= f.label :コーヒー豆 %>
-    <%= f.text_field :name, class: 'form-control', rows: 1 %>
+<div class="container">
+  <h2 class="text-center py-3">beans</h2>
+  <div class="index">
+    <%= form_with(model: @beanpost, local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      <div class="form-group">
+        <%= f.label :name, "name" %>
+        <%= f.text_field :name, class: 'form-control', rows: 1 %>
+      </div>
+      <div class="form-group">
+        <%= f.label :amount, "amount(g)" %>
+        <%= f.text_field :amount, class: 'form-control', rows: 1 %>
+      </div>
+      <div class="form-group">
+        <%= f.label :price, "peice(¥)" %>
+        <%= f.text_field :price, class: 'form-control', rows: 1 %>
+      </div>
+      <div class="form-group">
+        <%= f.label :country, "country" %>
+        <%= f.text_field :country, class: 'form-control', rows: 1 %>
+      </div>
+      <div class="form-group">
+        <%= f.label :image, "image" %>
+        <%= f.file_field :image %>
+      </div>
+      <%= f.submit 'post', class: 'btn btn-outline-dark btn-sm' %>
+    <% end %>
   </div>
-  <div class="form-group">
-    <%= f.label :量（g） %>
-    <%= f.text_field :amount, class: 'form-control', rows: 1 %>
-  </div>
-  <div class="form-group">
-    <%= f.label :税込価格（円） %>
-    <%= f.text_field :price, class: 'form-control', rows: 1 %>
-  </div>
-  <div class="form-group">
-    <%= f.label :産地 %>
-    <%= f.text_field :country, class: 'form-control', rows: 1 %>
-  </div>
-  <div class="form-group">
-    <%= f.label :画像 %>
-    <%= f.file_field :image %>
-  </div>
-  <%= f.submit '掲載', class: 'btn btn-outline-dark btn-block' %>
-<% end %>
+</div>

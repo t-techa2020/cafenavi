@@ -1,36 +1,41 @@
-<h2><%= @beanpost.name %></h2>
-
-<table class='table table-boarderd'>
-  <tr>
-    <td>商品名</td>
-    <td><%= @beanpost.name %></td>
-  </tr>
-  <tr>
-    <td>量（g）</td>
-    <td><%= @beanpost.amount %></td>
-  </tr>
-  <tr>
-    <td>税込価格（円）</td>
-    <td><%= @beanpost.price %></td>
-  </tr>
-  <tr>
-    <td>産地</td>
-    <td><%= @beanpost.country %></td>
-  </tr>
-  <tr>
-    <td>画像</td>
-    <td><%= image_tag @beanpost.image.url %></td>
-  </tr>
-  <tr>
-    <td>販売元</td>
-    <td><%= link_to @beanpost.owner.cafename, owner_path(@beanpost.owner) %></td>
-  </tr>
-</table>
-<% if owner_signed_in? %>
-  <div class='btn-group'>
-    <% if current_owner == @beanpost.owner %>
-      <%= link_to '編集', edit_beanpost_path(@beanpost), class: 'btn btn btn-outline-dark btn-sm ml-1' %>
-      <%= link_to "削除", @beanpost, method: :delete, data: { confirm: "削除してよろしいですか?" }, class: 'btn btn btn-outline-dark btn-sm ml-1' %>
-    <% end %>
+<section class="beans">
+  <div class="container">
+    <h3 class="text-center py-3"><%= @beanpost.name %></h3>
+    <div class="index">
+      <table class='table table-boarderd'>
+        <tr>
+          <td>bean</td>
+          <td><%= @beanpost.name %></td>
+        </tr>
+        <tr>
+          <td>amount(g)</td>
+          <td><%= @beanpost.amount %></td>
+        </tr>
+        <tr>
+          <td>price(¥)</td>
+          <td><%= @beanpost.price %></td>
+        </tr>
+        <tr>
+          <td>country</td>
+          <td><%= @beanpost.country %></td>
+        </tr>
+        <tr>
+          <td>image</td>
+          <td><%= image_tag @beanpost.image.url %></td>
+        </tr>
+        <tr>
+          <td>cafe name</td>
+          <td><%= link_to @beanpost.owner.cafename, owner_path(@beanpost.owner) %></td>
+        </tr>
+      </table>
+      <% if owner_signed_in? %>
+        <div class='btn-group'>
+          <% if current_owner == @beanpost.owner %>
+            <%= link_to 'edit', edit_beanpost_path(@beanpost), class: 'btn btn btn-outline-dark btn-sm ml-1' %>
+            <%= link_to "delete", @beanpost, method: :delete, data: { confirm: "削除してよろしいですか?" }, class: 'btn btn btn-outline-dark btn-sm ml-1' %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</section>

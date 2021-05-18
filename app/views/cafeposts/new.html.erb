@@ -1,27 +1,35 @@
-<h3>カフェの投稿</h3>
-
-<%= form_with(model: @cafepost, local: true) do |f| %>
-  <%= render 'layouts/error_messages', model: f.object %>
-  <div class="form-group">
-    <%= f.label :カフェ名 %>
-    <%= f.text_field :name, class: 'form-control', rows: 1 %>
+<section class="cafe-post">
+  <div class="container">
+    <h3 class="text-center py-3">post</h3>
+    <div class="index">
+      <div class="form">
+        <%= form_with(model: @cafepost, local: true) do |f| %>
+          <%= render 'layouts/error_messages', model: f.object %>
+          <div class="form-group">
+            <%= f.label :name, "name" %>
+            <%= f.text_field :name, class: 'form-control', rows: 1 %>
+          </div>
+          <div class="form-group">
+            <%= f.label :prefecture, "prefecture" %>
+            <%= f.select :prefecture, Cafepost.prefectures.keys.map {|k| [I18n.t("enums.cafepost.prefecture.#{k}"), k]}, {}, {class: 'form-control'} %>
+          </div>
+          <div class="form-group">
+            <%= f.label :address, "address" %>
+            <%= f.text_field :address, class: 'form-control', rows: 1 %>
+          </div>
+          <div class="form-group">
+            <%= f.label :comment, "comment" %>
+            <%= f.text_area :content, class: 'form-control', rows: 5 %>
+          </div>
+          <div class="form-group">
+            <%= f.label :image, "image" %>
+            <%= f.file_field :image %>
+          </div>
+          <div class="form-group">
+            <%= f.submit 'post', class: 'btn btn-outline-dark btn-block' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <%= f.label :都道府県 %>
-    <%= f.select :prefecture, Cafepost.prefectures.keys.map {|k| [I18n.t("enums.cafepost.prefecture.#{k}"), k]}, {}, {class: 'form-control'} %>
-  </div>
-  <div class="form-group">
-    <%= f.label :住所 %>
-    <%= f.text_field :address, class: 'form-control', rows: 1 %>
-  </div>
-  <div class="form-group">
-    <%= f.label :口コミ %>
-    <%= f.text_area :content, class: 'form-control', rows: 5 %>
-  </div>
-  <div class="form-group">
-    <%= f.label :画像 %>
-    <%= f.file_field :image %>
-  </div>
-  <%= f.submit '投稿', class: 'btn btn-outline-dark btn-block' %>
-<% end %>
-   
+</section>

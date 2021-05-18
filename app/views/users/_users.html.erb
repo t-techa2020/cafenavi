@@ -3,7 +3,7 @@
     <% users.each do |user| %>
       <tr>
         <td><img class="mr-2 rounded" src="<%= gravatar_url(user, { size: 50 }) %>" alt=""><%= user.name %></td>
-        <td><%= link_to 'プロフィール', user_path(user) %></td>
+        <td><%= link_to 'profile', user_path(user) %></td>
       </tr>
     <% end %>
   </table>
