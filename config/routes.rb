@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: 'users/sessions'
   }
+  
   resources :users, only: [:index, :new, :show, :create] do
     member do
       get :followings
