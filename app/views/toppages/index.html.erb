@@ -3,8 +3,7 @@
     <div class="text-center">
       <h1>Cafe Navi</h1>
       <% unless user_signed_in? || owner_signed_in? %>
-        <p></p>
-        <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-lg btn-outline-dark' %>
+        <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-lg btn-outline-dark text-white mt-3' %>
       <% end %>
     </div>
   </div>
@@ -38,11 +37,11 @@
 </section>
 <section class="recommend py-5">
   <div class="container">
-    <h2 class="text-center">Recommended Coffee</h2>
+    <h2 class="text-center">Beans</h2>
     <div class="row text-center">
       <% @beanposts.each do |beanpost| %>
         <div class="col-md-4 my-3">
-          <p><%= link_to beanpost.name, beanpost_path(beanpost) %> </p>
+          <p><%= link_to beanpost.name, beanpost_path(beanpost) %><br>(<%= beanpost.owner.cafename %>)</p>
           <div>
             <p>¥<%= beanpost.price %></p>
             <p><%= image_tag beanpost.image.url if beanpost.image? %></p>
