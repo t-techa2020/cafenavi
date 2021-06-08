@@ -1,24 +1,79 @@
-# README
+# Cafe Navi
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+「お気に入りのカフェを投稿しよう！」
 
-Things you may want to cover:
+Cafe Naviは、ユーザーがお気に入りのカフェを投稿できるアプリです。また、カフェのオーナーも販売するコーヒー豆を宣伝することが可能です！
 
-* Ruby version
+## ログイン方法
 
-* System dependencies
+URL：[https://cafenavi-t2020.herokuapp.com/](https://cafenavi-t2020.herokuapp.com/)
 
-* Configuration
+ユーザーログイン
+email：uguest@example.com /password：uguest123
 
-* Database creation
+オーナーログイン
+email：oguest@example.com /password：oguest123
 
-* Database initialization
+## 使用技術・環境
 
-* How to run the test suite
+【フロントエンド】
+* HTML
+* CSS
+* JavaScript
 
-* Services (job queues, cache servers, search engines, etc.)
+【バックエンド】
+* Ruby 2.5.3
+* Ruby on Rails 5.2.2
 
-* Deployment instructions
+【データベース】
+* MySQL 5.1
 
-* ...
+【本番環境】
+* Heroku
+
+【その他使用技術】
+* Git,GitHub
+* RSpec
+
+## 開発経緯
+
+コロナ禍でお気に入りのカフェが閉店してしまったことをきっかけに、カフェの魅力を発信したいと考え、カフェの口コミサイトを作成しました。
+
+## 工夫した点
+
+一つ一つの機能やデザインの細部にまで手を抜かず、「シンプルで使いやすい」と感じてもらえるように意識しました。
+
+ユーザーが口コミを投稿できる機能に加えて、カフェのオーナーが販売するコーヒー豆を宣伝できる機能を追加しました。
+
+トップページにカフェのランキングを作成しました。ユーザーのお気に入り登録数に応じて順位が変動するようになっています。
+
+## 機能一覧
+
+ユーザー機能
+
+* 登録・退会（deviseを使用)
+
+* ユーザーのフォロー・フォロー解除
+
+* カフェの投稿
+
+* カフェのお気に入り登録
+
+* カフェの検索
+
+* コーヒー豆の検索
+
+オーナー機能
+
+* 登録・退会（deviseを使用）
+
+* コーヒー豆の掲載
+
+* コーヒー豆の検索
+
+* カフェの検索機能
+
+## About me
+
+現在、26歳でエンジニアへの転職を目指しております。
+バックエンドエンジニアを目指し、ポートフォリオの作成等の学習を行なっております。
