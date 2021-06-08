@@ -1,4 +1,4 @@
-<div class="container mb-3">
+<div class="container py-3 mb-3">
   <h3 class="pt-5 text-center"><%= @user.name %></h3>
   <div class="pt-2 pb-5 text-center">
     <% if user_signed_in? %>
@@ -15,6 +15,7 @@
           <li class="nav-item"><a href="<%= likes_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(likes_user_path(@user)) %>">favorites <span class="badge badge-secondary"><%= @count_likes %></span></a></li>
         </ul>
         <%= render 'cafeposts/cafeposts', cafeposts: @likes %>
+        <%= paginate @likes %>
         <% if user_signed_in? %>
           <% if current_user.id == @user.id %>
             <div class="text-right"><%= link_to "delete account", user_path(current_user.id), method: :delete, data:{confirm: "本当に退会してよろしいですか？"}, class: 'btn btn-outline-dark btn-sm ml-1' %></div>

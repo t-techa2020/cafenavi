@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container py-3">
   <h2 class="text-center py-5">beans</h2>
   <div class="index">
     <%= form_with(model: @beanpost, local: true) do |f| %>
@@ -23,7 +23,9 @@
         <%= f.label :image, "image" %>
         <%= f.file_field :image %>
       </div>
-      <%= f.submit 'post', class: 'btn btn-outline-dark btn-sm' %>
+      <div class="form-group">
+      <%= f.submit 'post', class: 'btn btn-outline-dark btn-block' %>
+      </div>
     <% end %>
   </div>
 </div>
