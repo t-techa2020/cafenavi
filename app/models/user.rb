@@ -1,9 +1,6 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-  # attr_accessor :remember_token
+         :recoverable, :rememberable, :validatable, :omniauthable, :omniauth_providers => [:twitter]
   before_save { self.email.downcase! }
   validates :name, presence: true, length: { maximum: 50 }
   validates :email, presence: true, length: { maximum: 255 },
@@ -15,7 +12,6 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :follow, dependent: :destroy
   has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id', dependent: :destroy
   has_many :followers, through: :reverses_of_relationship, source: :user, dependent: :destroy
-  
   has_many :favorites, dependent: :destroy
   has_many :likes, through: :favorites, source: :cafepost, dependent: :destroy
   
@@ -53,5 +49,27 @@ class User < ApplicationRecord
   
   def remember_me
     true
+  end
+  
+  def self.from_omniauth(auth)
+    user = User.where(uid: auth.uid, provider: auth.provider).first
+
+     unless user
+       user = User.create(
+         uid:      auth.uid,
+         provider: auth.provider,
+         email:    User.dummy_email(auth),
+         password: Devise.friendly_token[0, 20],
+         name: auth.info.name
+         )
+     end
+  
+     user
+  end
+  
+  private
+  
+  def self.dummy_email(auth)
+   "#{auth.uid}-#{auth.provider}@example.com"
   end
 end

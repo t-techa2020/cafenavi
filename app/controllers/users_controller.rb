@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:destroy] 
 
   def index
-    @users = User.order(id: :desc).page(params[:page]).per(10)
+    @users = User.order(id: :desc).page(params[:page]).per(8)
   end
 
   def show

@@ -1,28 +1,20 @@
 Rails.application.routes.draw do
   root to: 'toppages#index'
   
-  # get 'login', to: 'sessions#new'
-  # post 'login', to: 'sessions#create'
-  # delete 'logout', to: 'sessions#destroy'
-  
   devise_for :users, controllers: {
     registrations: 'users/registrations',
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
   
-  resources :users, only: [:index, :new, :show, :create] do
+  resources :users, only: [:index, :show] do
     member do
       get :followings
       get :followers
-    end
-  end
-  
-  get 'likes', to: 'user#likes'
-  resources :users, only: [:index, :show, :new, :create, :destroy] do
-    member do
       get :likes
     end
   end
+  get 'likes', to: 'user#likes'
   
   resources :cafeposts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     collection do
@@ -37,7 +29,8 @@ Rails.application.routes.draw do
     registrations: 'owners/registrations',
     sessions: 'owners/sessions'
   }
-  resources :owners, only: [:index, :new, :show, :create, :destroy]
+  
+  resources :owners, only: [:index, :show]
   
   resources :beanposts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     collection do

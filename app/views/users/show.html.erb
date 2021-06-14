@@ -19,7 +19,7 @@
     </div>
     <% if user_signed_in? %>
       <% if current_user.id == @user.id %>
-        <div class="text-right"><%= link_to "delete account", user_path(current_user.id), method: :delete, data:{confirm: "本当に退会してよろしいですか？"}, class: 'btn btn-outline-dark btn-sm ml-1' %></div>
+        <div class="text-right"><%= link_to "delete account", user_registration_path, method: :delete, data:{confirm: "本当に退会してよろしいですか？"}, class: 'btn btn-outline-dark btn-sm ml-1' %></div>
       <% end %>
     <% end %>
   </div>
