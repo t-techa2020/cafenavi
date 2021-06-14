@@ -58,7 +58,7 @@
     <div class="pt-2 pb-5 text-right">
       <% if owner_signed_in? %>
         <% if current_owner.id == @owner.id %>
-          <div><%= link_to "delete account", owner_path(current_owner.id), method: :delete, data:{confirm: "本当に退会してよろしいですか？"}, class: 'btn btn-outline-dark text-right btn-sm ml-1 ' %></div>
+          <div><%= link_to "delete account", owner_registration_path, method: :delete, data:{confirm: "本当に退会してよろしいですか？"}, class: 'btn btn-outline-dark text-right btn-sm ml-1 ' %></div>
         <% end %>
       <% end %>
     </div>

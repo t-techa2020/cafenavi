@@ -32,6 +32,7 @@
     
           <%= f.submit 'user sign up', class: 'btn btn-outline-dark btn-block' %>
         <% end %>
+        <p>><%= link_to 'user sign in with Twitter', user_twitter_omniauth_authorize_path, method: :post %></p>
         <p>><%= link_to 'owner sign up', new_owner_registration_path %></p>
       </div>
     </div>

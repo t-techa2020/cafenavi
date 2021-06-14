@@ -23,7 +23,7 @@
       <div class="form-group">
         <%= f.label :image, "image" %>
         <%= f.file_field :image %>
-        <%= f.check_box :remove_image %>delete
+        <%= f.check_box :remove_image %>画像を削除
         <%= image_tag @cafepost.image.url %>
       </div>
       <%= f.submit 'update', class: 'btn btn-outline-dark btn-block' %>
