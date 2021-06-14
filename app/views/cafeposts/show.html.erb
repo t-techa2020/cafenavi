@@ -1,7 +1,7 @@
 <section class="cafes">
   <div class="container mb-5">
     <h3 class="text-center py-5"><%= @cafepost.name %></h3>
-    <div class="index">
+    <div class="index mb-5">
       <table class='table table-boarderd'>
         <tr>
           <td>user name</td>
@@ -81,7 +81,7 @@
           <%= render "favorites/favorite_button", cafepost: @cafepost %>
           <% if current_user == @cafepost.user %>
             <%= link_to 'edit', edit_cafepost_path(@cafepost), class: 'btn btn-outline-dark btn-sm ml-1' %>
-            <%= link_to "delete", @cafepost, method: :delete, data: { confirm: "削除してよろしいですか?" }, class: 'btn btn-outline-dark btn-sm ml-1' %>
+            <%= link_to "delete", @cafepost, method: :delete, remote: true, data: { confirm: "削除してよろしいですか?" }, class: 'btn btn-outline-dark btn-sm ml-1 delete' %>
           <% end %>
         </div>
       <% end %>

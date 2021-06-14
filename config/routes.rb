@@ -16,14 +16,15 @@ Rails.application.routes.draw do
   end
   get 'likes', to: 'user#likes'
   
-  resources :cafeposts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+  resources :relationships, only: [:create, :destroy]
+  
+  resources :favorites, only:[:create, :destroy]
+  
+  resources :cafeposts do
     collection do
       get :search
     end
   end
-  
-  resources :relationships, only: [:create, :destroy]
-  resources :favorites, only:[:create, :destroy]
   
   devise_for :owners, controllers: {
     registrations: 'owners/registrations',
@@ -32,7 +33,7 @@ Rails.application.routes.draw do
   
   resources :owners, only: [:index, :show]
   
-  resources :beanposts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+  resources :beanposts do
     collection do
       get :search
     end
